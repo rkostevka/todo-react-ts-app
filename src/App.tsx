@@ -1,11 +1,13 @@
 import React from 'react';
 import { Navbar } from './components/Navbar';
+import './styles/style.css';
 
 const App: React.FC = () => {
   return (
-    <div className="App">
+    <>
       <Navbar/>
-    </div>
+      <div className="container"></div>
+    </>
   );
 }
 
