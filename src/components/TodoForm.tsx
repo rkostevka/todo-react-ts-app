@@ -1,19 +1,22 @@
 import React, { ChangeEvent, FC, KeyboardEvent, useState } from "react";
 
-export const TodoForm: FC = () => {
+interface TodoFormProps {
+	onAdd(title: string): void
+}
 
-	const [title, setTitle] = useState<string>('');
+export const TodoForm: FC<TodoFormProps> = (props) => {
+	const [title, setTitle] = useState<string>("");
 
 	const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
 		setTitle(event.target.value);
-	}
+	};
 
 	const keyPressHandler = (event: KeyboardEvent) => {
 		if (event.key === "Enter") {
-			console.log(title);
-			setTitle('');
+			props.onAdd(title);
+			setTitle("");
 		}
-	}
+	};
 
 	return (
 		<div className="input-field">
@@ -30,4 +33,4 @@ export const TodoForm: FC = () => {
 			</label>
 		</div>
 	);
-}
+};
