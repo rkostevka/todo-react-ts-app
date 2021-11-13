@@ -19,11 +19,16 @@ const App: React.FC = () => {
   }
 
   const toogleHandler = (id: number) => {
-
+    setTodos(prev => prev.map(item => {
+      if(item.id === id) {
+        item.completed = !item.completed;
+      }
+      return item
+    }))
   }
 
-  const renoveHandler = (id: number) => {
-
+  const removeHandler = (id: number) => {
+    setTodos(prev => prev.filter(todo => todo.id !== id))
   }
 
   return (
@@ -31,7 +36,11 @@ const App: React.FC = () => {
 			<Navbar />
 			<div className="container">
 				<TodoForm onAdd={addHandler} />
-        <TodoList todos={todos}/>
+				<TodoList
+					todos={todos}
+					onToogle={toogleHandler}
+					onRemove={removeHandler}
+				/>
 			</div>
 		</>
 	);

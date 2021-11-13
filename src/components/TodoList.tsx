@@ -3,10 +3,12 @@ import React, { FC } from "react";
 import { ITodo } from "../interfaces";
 
 type TodoListProps = {
-	todos: ITodo[]
-}
+	todos: ITodo[],
+	onToogle(id: number): void,
+	onRemove(id: number): void
+};
 
-export const TodoList: FC<TodoListProps> = ({todos}) => {
+export const TodoList: FC<TodoListProps> = ({todos, onToogle, onRemove}) => {
 	
 	return (
 		<ul>
@@ -16,11 +18,13 @@ export const TodoList: FC<TodoListProps> = ({todos}) => {
 					classes.push('completed')
 				}
 				return (
-					<li className={classes.join(" ")} key={todo.id}>
-						<label htmlFor="">
-							<input type="checkbox" checked={todo.completed} />
+					<li key={todo.id} className={classes.join(' ')}>
+						<label htmlFor={todo.id.toString()}>
+							<input type="checkbox" checked={todo.completed} onChange={() => onToogle(todo.id)} id={todo.id.toString()}/>
 							<span>{todo.title}</span>
-							<i className="material-icons red-text">delete</i>
+							<i className="material-icons red-text" onClick={() => onRemove(todo.id)}>
+								delete
+							</i>
 						</label>
 					</li>
 				);

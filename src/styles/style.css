@@ -10,7 +10,7 @@ body {
 .todo {
 	margin: 0 0 10px 0;
 }
-.todo.compledet {
+.todo.completed {
 	text-decoration: line-through;
 }
 .todo label {
