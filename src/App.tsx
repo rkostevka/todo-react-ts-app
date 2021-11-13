@@ -22,8 +22,8 @@ const App: React.FC = () => {
 
   }
 
-  cinst renoveHandler = (id: number) => {
-    
+  const renoveHandler = (id: number) => {
+
   }
 
   return (
