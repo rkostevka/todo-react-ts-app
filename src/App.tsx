@@ -28,7 +28,10 @@ const App: React.FC = () => {
   }
 
   const removeHandler = (id: number) => {
-    setTodos(prev => prev.filter(todo => todo.id !== id))
+    const shouldRemove = window.confirm('Do you want to remove todo?');
+    if(shouldRemove){
+      setTodos(prev => prev.filter(todo => todo.id !== id))
+    }
   }
 
   return (

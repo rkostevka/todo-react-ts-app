@@ -6,9 +6,20 @@ type TodoListProps = {
 	todos: ITodo[],
 	onToogle(id: number): void,
 	onRemove(id: number): void
-};
+}
+
+
 
 export const TodoList: FC<TodoListProps> = ({todos, onToogle, onRemove}) => {
+
+	if (todos.length === 0) {
+		return <p className="center">Todos are not avaliable yet!</p>;
+	}
+
+	const removeHandler = (event: React.MouseEvent, id: number) => {
+		event.stopPropagation();
+		onRemove(id);
+	}
 	
 	return (
 		<ul>
@@ -22,7 +33,7 @@ export const TodoList: FC<TodoListProps> = ({todos, onToogle, onRemove}) => {
 						<label htmlFor={todo.id.toString()}>
 							<input type="checkbox" checked={todo.completed} onChange={() => onToogle(todo.id)} id={todo.id.toString()}/>
 							<span>{todo.title}</span>
-							<i className="material-icons red-text" onClick={() => onRemove(todo.id)}>
+							<i className="material-icons red-text" onClick={event => removeHandler(event, todo.id)}>
 								delete
 							</i>
 						</label>
