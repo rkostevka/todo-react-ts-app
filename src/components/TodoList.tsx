@@ -17,7 +17,7 @@ export const TodoList: FC<TodoListProps> = ({todos, onToogle, onRemove}) => {
 	}
 
 	const removeHandler = (event: React.MouseEvent, id: number) => {
-		event.stopPropagation();
+		event.preventDefault();
 		onRemove(id);
 	}
 	
